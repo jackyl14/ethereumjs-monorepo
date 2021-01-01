@@ -120,11 +120,12 @@ export class RlpxServer extends Server {
    * Bootstrap bootnode peers from the network
    */
   async bootstrap(): Promise<void> {
-    const promises = this.bootnodes.map((node) => {
+    const promises = this.bootnodes.map((ma) => {
+      const { address, port } = ma.nodeAddress()
       const bootnode = {
-        address: node.ip!,
-        udpPort: node.port,
-        tcpPort: node.port,
+        address,
+        udpPort: Number(port),
+        tcpPort: Number(port),
       }
       return this.dpt!.bootstrap(bootnode)
     })
