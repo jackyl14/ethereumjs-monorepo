@@ -205,4 +205,11 @@ export class Config {
     const dataDir = `${this.datadir}/${networkDirName}/state`
     return dataDir
   }
+
+  getNetworkDir(): string {
+    const networkDirName = this.common.chainName()
+    const dataDir = `${this.datadir}/${networkDirName}`
+
+    return dataDir
+  }
 }
